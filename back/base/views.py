@@ -3,8 +3,10 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
-from .models import Client, Service, Project, Testimonial
-from .serializers import ClientSerializer, ServiceSerializer, ProjectSerializer, TestimonialSerializer
+from .models import Client, Project, Testimonial, Blog, Contact #Service
+from .serializers import ClientSerializer, ProjectSerializer, TestimonialSerializer, BlogSerializer #ServiceSerializer
+
+
 
 class ClientListCreateView(APIView):
     permission_classes = [IsAuthenticated]
@@ -45,44 +47,48 @@ class ClientDetailView(APIView):
         client.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class ServiceListCreateView(APIView):
-    permission_classes = [IsAuthenticated]
 
-    def get(self, request):
-        services = Service.objects.all()
-        serializer = ServiceSerializer(services, many=True)
-        return Response(serializer.data)
 
-    def post(self, request):
-        serializer = ServiceSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# class ServiceListCreateView(APIView):
+#     permission_classes = [IsAuthenticated]
 
-class ServiceDetailView(APIView):
-    permission_classes = [IsAuthenticated]
+#     def get(self, request):
+#         services = Service.objects.all()
+#         serializer = ServiceSerializer(services, many=True)
+#         return Response(serializer.data)
 
-    def get_object(self, pk):
-        return get_object_or_404(Service, pk=pk)
+#     def post(self, request):
+#         serializer = ServiceSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def get(self, request, pk):
-        service = self.get_object(pk)
-        serializer = ServiceSerializer(service)
-        return Response(serializer.data)
+# class ServiceDetailView(APIView):
+#     permission_classes = [IsAuthenticated]
 
-    def put(self, request, pk):
-        service = self.get_object(pk)
-        serializer = ServiceSerializer(service, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#     def get_object(self, pk):
+#         return get_object_or_404(Service, pk=pk)
 
-    def delete(self, request, pk):
-        service = self.get_object(pk)
-        service.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+#     def get(self, request, pk):
+#         service = self.get_object(pk)
+#         serializer = ServiceSerializer(service)
+#         return Response(serializer.data)
+
+#     def put(self, request, pk):
+#         service = self.get_object(pk)
+#         serializer = ServiceSerializer(service, data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+#     def delete(self, request, pk):
+#         service = self.get_object(pk)
+#         service.delete()
+#         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
 
 class ProjectListCreateView(APIView):
     permission_classes = [IsAuthenticated]
@@ -123,6 +129,8 @@ class ProjectDetailView(APIView):
         project.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+
+
 class TestimonialListCreateView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -161,3 +169,55 @@ class TestimonialDetailView(APIView):
         testimonial = self.get_object(pk)
         testimonial.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
+
+class BlogListCreateView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        blogs = Blog.objects.all()
+        serializer = BlogSerializer(blogs, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = BlogSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class BlogDetailView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get_object(self, pk):
+        return get_object_or_404(Testimonial, pk=pk)
+    
+    def get(self, request, pk):
+        blog = self.get_object(pk)
+        serializer = BlogSerializer(blog)
+        return Response(serializer.data)
+    
+    
+    def put(self, request, pk):
+        blog = self.get_object(pk)
+        serializer = BlogSerializer(blog, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        blog = self.get_object(pk)
+        blog.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
+    
+
+    
+    
+
+        
+    
