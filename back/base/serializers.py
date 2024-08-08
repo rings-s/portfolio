@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Client,  Project, Testimonial, Blog, Contact #Service
+from .models import Client, Project, Testimonial, Blog, Contact
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -8,20 +8,15 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'username', 'first_name', 'last_name', 'email']
 
 class ClientSerializer(serializers.ModelSerializer):
-    user = UserSerializer()
+    user = UserSerializer(read_only=True)  # Ensure nested serialization does not expect writable input
 
     class Meta:
         model = Client
         fields = ['id', 'user', 'phone_number', 'created_at', 'profile_image']
-
-# class ServiceSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Service
-#         fields = ['id', 'name']
+        read_only_fields = ('created_at',)  # Ensure auto_now_add fields are read-only
 
 class ProjectSerializer(serializers.ModelSerializer):
-    client = ClientSerializer()
-    # service_tag = ServiceSerializer()
+    client = ClientSerializer(read_only=True)  # Use read_only to avoid issues with nested writable serializer
 
     class Meta:
         model = Project
@@ -29,6 +24,7 @@ class ProjectSerializer(serializers.ModelSerializer):
             'id', 'name', 'description', 'created_at', 'file', 
             'client', 'logo_img', 'end_date'
         ]
+        read_only_fields = ('created_at',)  # Ensure auto_now_add fields are read-only
 
 class TestimonialSerializer(serializers.ModelSerializer):
     class Meta:
@@ -37,11 +33,19 @@ class TestimonialSerializer(serializers.ModelSerializer):
             'id', 'client_name', 'client_image', 'project_name', 
             'date', 'testimonial_body'
         ]
-
+        read_only_fields = ('date',)  # Ensure auto_now_add fields are read-only
 
 class BlogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blog
         fields = [
             'id', 'title', 'description', 'image', 'created_at'
+        ]
+        read_only_fields = ('created_at',)  # Ensure auto_now_add fields are read-only
+
+class ContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contact
+        fields = [
+            'id', 'name', 'email', 'message'
         ]

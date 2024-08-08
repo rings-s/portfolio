@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
 from .models import Client, Project, Testimonial, Blog, Contact #Service
-from .serializers import ClientSerializer, ProjectSerializer, TestimonialSerializer, BlogSerializer #ServiceSerializer
+from .serializers import ClientSerializer, ProjectSerializer,TestimonialSerializer, BlogSerializer, ContactSerializer  #ServiceSerializer
 
 
 
@@ -217,7 +217,44 @@ class BlogDetailView(APIView):
     
 
     
+class ContactListCreateView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        contacts = Contact.objects.all()
+        serializer = ContactSerializer(contacts, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = ContactSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+class ContactDetailView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get_object(self, pk):
+        return get_object_or_404(Contact, pk=pk)
+    
+    def get(self, request, pk):
+        contact = self.get_object(pk)
+        serializer = ContactSerializer(contact)
+        return Response(serializer.data)
+    
+    
+    def put(self, request, pk):
+        contact = self.get_object(pk)
+        serializer = ContactSerializer(contact, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        contact = self.get_object(pk)
+        contact.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
         
     
