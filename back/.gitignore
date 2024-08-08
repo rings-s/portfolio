@@ -1,0 +1,6 @@
+**/ringoForDev/
+**/blog_images/
+**/client_images/
+db.sqlite3
+**/__pycache__/
+**/migrations/
