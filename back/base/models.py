@@ -29,17 +29,11 @@ class Project(models.Model):
 
 
 class Testimonial(models.Model):
-    client_name = models.ForeignKey(Client, on_delete=models.CASCADE)
-<<<<<<< HEAD
-    client_image = models.ForeignKey(
-        Client, on_delete=models.CASCADE, upload_to="testimonial_images/"
-    )  # profile image
+    client_name = models.ForeignKey(Client, on_delete=models.CASCADE, related_name="client_name_testimonials")
+    client_image = models.ForeignKey(Client, on_delete=models.CASCADE, related_name="client_image_testimonials")
+
     project_name = models.ForeignKey(Project, on_delete=models.CASCADE, blank=True)
 
-=======
-    client_image = models.ImageField(upload_to='testimonial_images/')
-    project_name = models.CharField(max_length=100, blank=True)
->>>>>>> origin/main
     date = models.DateTimeField(auto_now_add=True)
     testimonial_body = models.TextField()
 
@@ -63,8 +57,4 @@ class Contact(models.Model):
     message = models.TextField()
 
     def __str__(self):
-<<<<<<< HEAD
         return self.name
-=======
-        return self.name   
->>>>>>> origin/main
