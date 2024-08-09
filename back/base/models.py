@@ -29,11 +29,12 @@ class Project(models.Model):
 
 
 class Testimonial(models.Model):
-    client_name = models.ForeignKey(Client, on_delete=models.CASCADE, max_length=100)
-    client_image = models.ImageField(upload_to="testimonial_images/")  # profile image
-    project_name = models.ForeignKey(
-        Project, on_delete=models.CASCADE, max_length=100, blank=True
-    )
+    client_name = models.ForeignKey(Client, on_delete=models.CASCADE)
+    client_image = models.ForeignKey(
+        Client, on_delete=models.CASCADE, upload_to="testimonial_images/"
+    )  # profile image
+    project_name = models.ForeignKey(Project, on_delete=models.CASCADE, blank=True)
+
     date = models.DateTimeField(auto_now_add=True)
     testimonial_body = models.TextField()
 

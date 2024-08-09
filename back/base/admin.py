@@ -1,9 +1,11 @@
 from django.contrib import admin
 from .models import Client, Project, Testimonial, Blog, Contact
 
+
+
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ('name', 'phone_number', 'created_at')
+    list_display = ('name', 'phone_number', 'email', 'created_at')
     list_filter = ('created_at',)
     search_fields = ('name__username', 'phone_number')  # Searching through the User's username
 
