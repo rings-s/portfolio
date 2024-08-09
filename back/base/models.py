@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 class Client(models.Model):
     name = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=15)
+    email = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     profile_image = models.ImageField(upload_to='client_images/')
 
