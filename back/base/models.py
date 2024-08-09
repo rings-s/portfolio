@@ -29,7 +29,7 @@ class Project(models.Model):
 
 
 class Testimonial(models.Model):
-    client_name = models.CharField(max_length=100)
+    client_name = models.ForeignKey(Client, on_delete=models.CASCADE)
     client_image = models.ImageField(upload_to='testimonial_images/')
     project_name = models.CharField(max_length=100, blank=True)
     date = models.DateTimeField(auto_now_add=True)
