@@ -1,7 +1,7 @@
 import { writable } from "svelte/store";
 
 
-export const TestimonialStore = writable([
+export const BlogStore = writable([
     {
         id: 0, 
         title: "John Doe",
