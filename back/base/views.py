@@ -51,7 +51,7 @@ class ClientDetailView(APIView):
 
 
 class ProjectListCreateView(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def get(self, request):
         projects = Project.objects.all()
