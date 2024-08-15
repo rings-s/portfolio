@@ -1,16 +1,19 @@
 <script>
     import { TestimonialStore } from './../../TestimonialStore';
 
-    let handleClick = () => TestimonialStore.update(prev => {
-        let newTestimonial = {
-            id: prev.length > 0 ? Math.max(...prev.map(t => t.id)) + 1 : 1,
-            client_name: 'Drive',
-            project_name: 'Nicolas Winding Refn',
-            date: '2022-01-01',
-            testimonial_body: 'Amazing direction and cinematography.'
-        };
-        return [...prev, newTestimonial];  
-    });
+    onMount(async function () {
+        if ($TestimonialStore.length) {
+            const endpoint = 'http://127.0.0.1:8000/api/testimonials/'
+            const response = await fetch(endpoint)
+            const data = await response.json()
+
+            // console.log(data)
+
+            TestimonialStore.set(data)
+
+        }
+       
+    })
 </script>
 
 <div class="max-w-6xl mx-auto p-5">
@@ -27,7 +30,4 @@
         {/each}
     </div>
 
-    <button type="button" class="px-6 py-2 mt-6 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md transition-colors" on:click={handleClick}>
-        Add a Testimonial
-    </button>
 </div>

@@ -1,10 +1,19 @@
 <script>
     import { ClientStore } from './../../ClientStore';
 
-    let handleClick = () => ClientStore.update(prev => {
-        let newClient = { id: 3, name: 'Drive', phone_number: '123456789', created_at: '2022-01-01' };
-        return [...prev, newClient];
-    });
+    onMount(async function () {
+        if ($ClientStore.length) {
+            const endpoint = `http://127.0.0.1:8000/api/clients/`
+            const response = await fetch(endpoint)
+            const data = await response.json()
+
+            // console.log(data)
+
+            ClientStore.set(data)
+
+        }
+       
+    })
 </script>
 
 <div class="max-w-4xl mx-auto p-4 bg-white shadow rounded-lg">
@@ -16,7 +25,5 @@
         </div>
     {/each}
 
-    <button type="button" class="px-4 py-2 mt-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md shadow" on:click={handleClick}>
-        Add a Client
-    </button>
+ 
 </div>

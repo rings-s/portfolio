@@ -9,7 +9,7 @@ from .serializers import ClientSerializer, ProjectSerializer,TestimonialSerializ
 
 
 class ClientListCreateView(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def get(self, request):
         clients = Client.objects.all()
@@ -24,7 +24,7 @@ class ClientListCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ClientDetailView(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def get_object(self, pk):
         return get_object_or_404(Client, pk=pk)
@@ -67,7 +67,7 @@ class ProjectListCreateView(APIView):
 
 
 class ProjectDetailView(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def get_object(self, pk):
         return get_object_or_404(Project, pk=pk)
@@ -93,7 +93,7 @@ class ProjectDetailView(APIView):
 
 
 class TestimonialListCreateView(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def get(self, request):
         testimonials = Testimonial.objects.all()
@@ -108,7 +108,7 @@ class TestimonialListCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class TestimonialDetailView(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def get_object(self, pk):
         return get_object_or_404(Testimonial, pk=pk)
@@ -135,7 +135,7 @@ class TestimonialDetailView(APIView):
 
 
 class BlogListCreateView(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def get(self, request):
         blogs = Blog.objects.all()
@@ -150,7 +150,7 @@ class BlogListCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class BlogDetailView(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     def get_object(self, pk):
         return get_object_or_404(Testimonial, pk=pk)
     
@@ -179,7 +179,7 @@ class BlogDetailView(APIView):
 
     
 class ContactListCreateView(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def get(self, request):
         contacts = Contact.objects.all()
@@ -194,7 +194,7 @@ class ContactListCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class ContactDetailView(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     def get_object(self, pk):
         return get_object_or_404(Contact, pk=pk)
     
