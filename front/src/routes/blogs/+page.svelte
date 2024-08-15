@@ -7,17 +7,16 @@
     });
 </script>
 
-<div>
+<div class="max-w-3xl mx-auto p-4 bg-white shadow rounded-lg">
     {#each $BlogStore as blog}
-        <div>
-            <h1>{blog.title}</h1>
-            <p>{blog.description}</p>
-            <p>{blog.created_at}</p>
-            
+        <div class="my-4 p-5 border-b last:border-b-0">
+            <h1 class="text-2xl font-bold text-gray-900">{blog.title}</h1>
+            <p class="text-gray-600">{blog.description}</p>
+            <p class="text-sm text-gray-400">{blog.created_at}</p>
         </div>
     {/each}
 
-    <button type="button" class="px-4 py-1 mt-3 border border-gray-100 bg-gray-800 text-white rounded-2xl" on:click={handleClick}>
+    <button type="button" class="px-4 py-2 mt-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md shadow" on:click={handleClick}>
         Add a Blog
     </button>
 </div>

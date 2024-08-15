@@ -1,28 +1,22 @@
 <script>
-	import { ClientStore } from './../../ClientStore';
+    import { ClientStore } from './../../ClientStore';
 
-
-    let handleClick = () => BlogStore.update(prev => {
+    let handleClick = () => ClientStore.update(prev => {
         let newClient = { id: 3, name: 'Drive', phone_number: '123456789', created_at: '2022-01-01' };
         return [...prev, newClient];
     });
 </script>
 
-
-
-
-<div>
-
+<div class="max-w-4xl mx-auto p-4 bg-white shadow rounded-lg">
     {#each $ClientStore as client}
-        <div>
-            <h1>{client.name}</h1>
-            <p>{client.phone_number}</p>
-            <p>{client.created_at}</p>
+        <div class="my-4 p-5 border-b last:border-b-0">
+            <h1 class="text-2xl font-bold text-gray-900">{client.name}</h1>
+            <p class="text-gray-600">{client.phone_number}</p>
+            <p class="text-sm text-gray-400">{client.created_at}</p>
         </div>
     {/each}
 
-
-    <button type="button" class="px-4 py-1 mt-3 border border-gray-100 bg-gray-800 text-white rounded-2xl" on:click={handleClick}>
+    <button type="button" class="px-4 py-2 mt-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md shadow" on:click={handleClick}>
         Add a Client
     </button>
 </div>

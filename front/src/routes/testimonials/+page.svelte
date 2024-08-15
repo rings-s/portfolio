@@ -13,17 +13,21 @@
     });
 </script>
 
-<div>
-    {#each $TestimonialStore as testimonial}
-        <div>
-            <h1>{testimonial.client_name}</h1>
-            <p>{testimonial.project_name}</p>
-            <p>{testimonial.date}</p>
-            <p>{testimonial.testimonial_body}</p>
-        </div>
-    {/each}
+<div class="max-w-6xl mx-auto p-5">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {#each $TestimonialStore as testimonial}
+            <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col justify-between">
+                <div>
+                    <h1 class="text-xl font-bold text-gray-900">{testimonial.client_name}</h1>
+                    <p class="text-gray-700">{testimonial.project_name}</p>
+                    <p class="text-sm text-gray-500">{testimonial.date}</p>
+                    <p class="text-gray-600 mt-2">{testimonial.testimonial_body}</p>
+                </div>
+            </div>
+        {/each}
+    </div>
 
-    <button type="button" class="px-4 py-1 mt-3 border border-gray-100 bg-gray-800 text-white rounded-2xl" on:click={handleClick}>
+    <button type="button" class="px-6 py-2 mt-6 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md transition-colors" on:click={handleClick}>
         Add a Testimonial
     </button>
 </div>
