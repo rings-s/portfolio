@@ -21,9 +21,9 @@ class ClientSerializer(serializers.ModelSerializer):
 
 
 class ProjectSerializer(serializers.ModelSerializer):
-    client = ClientSerializer(
-        read_only=True
-    )  # Use read_only to avoid issues with nested writable serializer
+    logo = serializers.ImageField(use_url=True)
+    client = ClientSerializer(read_only=True)
+    # Use read_only to avoid issues with nested writable serializer
 
     class Meta:
         model = Project
@@ -34,7 +34,7 @@ class ProjectSerializer(serializers.ModelSerializer):
             "created_at",
             "file",
             "client",
-            "logo_img",
+            "logo",
             "end_date",
         ]
         read_only_fields = ("created_at",)  # Ensure auto_now_add fields are read-only

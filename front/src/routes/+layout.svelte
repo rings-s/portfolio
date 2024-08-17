@@ -15,8 +15,8 @@
 				<a href="/" class="hover:text-gray-700 transition duration-150 ease-in-out">Ringo</a>
 			</h1>
 
-			<nav aria-label="Main navigation">
-				<ul class="flex items-center gap-4">
+			<nav aria-label="Main navigation  " >
+				<ul class="hidden lg:flex items-center gap-4 ">
 					<li><a href="/" class="text-base text-gray-600 hover:text-gray-900">Home</a></li>
 					<li><a href="/about" class="text-base text-gray-600 hover:text-gray-900">About</a></li>
 					<li>
@@ -35,7 +35,8 @@
 					</li>
 					<li><a href="/blogs" class="text-base text-gray-600 hover:text-gray-900">blogs</a></li>
 				</ul>
-			</nav>
+			</nav> 
+			
 		</div>
 	</header>
 

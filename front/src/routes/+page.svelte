@@ -9,7 +9,7 @@
 		<div class="flex justify-center space-x-2">
 			<a
 				class="btn variant-filled"
-				href="/"
+				href="/services/"
 				target="_blank"
 				rel="noreferrer"
 			>

@@ -1,19 +1,21 @@
 <script>
-    import { TestimonialStore } from './../../TestimonialStore';
+	import { TestimonialStore } from './../../TestimonialStore';
+	import { onMount } from 'svelte';
 
-    onMount(async function () {
-        if ($TestimonialStore.length) {
-            const endpoint = 'http://127.0.0.1:8000/api/testimonials/'
-            const response = await fetch(endpoint)
-            const data = await response.json()
-
-            // console.log(data)
-
-            TestimonialStore.set(data)
-
-        }
-       
-    })
+	onMount(async () => {
+		try {
+			const endpoint = 'http://127.0.0.1:8000/api/testimonials/';
+			const response = await fetch(endpoint);
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`);
+			}
+			const data = await response.json();
+			console.log(data);
+			TestimonialStore.set(data);
+		} catch (error) {
+			console.error('Failed to fetch blogs:', error);
+		}
+	});
 </script>
 
 <div class="max-w-6xl mx-auto p-5">

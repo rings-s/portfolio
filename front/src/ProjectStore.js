@@ -9,7 +9,7 @@ export const ProjectStore = writable([
         
         created_at: "2022-01-01",
         client: "John Doe",
-        logo_img: 'https://www.rollingstone.com/wp-content/uploads/2022/09/Big-Lebowski-2.jpg?resize=1800,1800&w=1800',
+        logo_img: 'media/project_logos/dummy_imgs_8cEPBPE.png',
         end_date: "2022-01-01"
     }
 ]);

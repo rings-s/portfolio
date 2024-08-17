@@ -21,7 +21,7 @@ class Project(models.Model):
     client = models.ForeignKey(
         Client, on_delete=models.CASCADE, related_name="projects"
     )
-    logo_img = models.ImageField(upload_to="project_logos/")
+    logo = models.ImageField(upload_to="project_logos/")
     end_date = models.DateField()
 
     def __str__(self):
