@@ -3,7 +3,7 @@
     import { onMount } from 'svelte';
 
     export let data;
-
+    // let film = $FilmStore.find(film => film.id == data.id);
     let blog;
     let id;
 
