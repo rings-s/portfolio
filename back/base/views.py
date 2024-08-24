@@ -152,7 +152,7 @@ class BlogListCreateView(APIView):
 class BlogDetailView(APIView):
     # permission_classes = [IsAuthenticated]
     def get_object(self, pk):
-        return get_object_or_404(Testimonial, pk=pk)
+        return get_object_or_404(Blog, pk=pk)
     
     def get(self, request, pk):
         blog = self.get_object(pk)
