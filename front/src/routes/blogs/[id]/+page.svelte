@@ -3,23 +3,26 @@
     import { onMount } from 'svelte';
 
     export let data;
-    // let film = $FilmStore.find(film => film.id == data.id);
     let blog;
     let id;
 
     onMount(async function() {
-        id = data.id;  // Ensure id is set for use in the component
-        if ($BlogStore.length) {
+        try {
+            id = data.id;  // Ensure id is set for use in the component
             blog = $BlogStore.find(b => b.id === id);
-        } 
-        if (!blog) {  // Fetch film if not found in store
-            const endpoint = `http://localhost:8000/api/blogs/${id}/`;  // Use backticks for template literals
-            const response = await fetch(endpoint);
-            if (response.ok) {
-                blog = await response.json();
-            } else {
-                blog = null;
+            
+            if (!blog) {  // Fetch blog if not found in store
+                const endpoint = `http://localhost:8000/api/blogs/${id}/`;
+                const response = await fetch(endpoint);
+                if (response.ok) {
+                    blog = await response.json();
+                } else {
+                    throw new Error('Failed to fetch blog from backend');
+                }
             }
+        } catch (error) {
+            console.error('Error in blog fetching:', error.message);
+            blog = null;  // Set blog to null in case of any errors
         }
     });
 </script>

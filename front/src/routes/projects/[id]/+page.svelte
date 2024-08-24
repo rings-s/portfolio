@@ -35,13 +35,16 @@
             </div>
             <div class="shadow-lg rounded-lg overflow-hidden">
                 <div class="p-5">
-                    <h1 class="text-2xl font-bold text-gray-900">{project.name}</h1>
+                    <h1 class="text-2xl font-bold text-gray-100">{project.name}</h1>
                     <div class="mt-4">
-                        <p class="text-sm text-gray-600">Start: {project.created_at}</p>
-                        <p class="text-sm text-gray-600">Client: {project.client}</p>
-                        <p class="text-sm text-gray-600">End: {project.end_date}</p>
-                        <p class="text-sm text-gray-600">{project.description}</p>
+                        <p class="text-sm text-gray-100">Start: {project.created_at}</p>
+                        <p class="text-sm text-gray-100">Client: {project.client}</p>
+                        <p class="text-sm text-gray-100">End: {project.end_date}</p>
+                        <p class="text-sm text-gray-100">{project.description}</p>
                     </div>
+                    <button type="button" class="px-6 py-2 mt-6 bg-blue-100 hover:bg-purple-200 text-black font-semibold rounded-md transition-colors">
+                        <a href={`/projects/`}>back</a>
+                    </button>
                 </div>
             </div>
         {:else}

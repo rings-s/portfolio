@@ -30,7 +30,7 @@
                     <h1 class="text-2xl font-bold text-gray-900">{project.name}</h1>
                     <div class="mt-4">
                         <p class="text-sm text-gray-600">Start: {project.created_at}</p>
-                        <p class="text-sm text-gray-600">Client: {project.client}</p>
+                        <p class="text-sm text-gray-600">Client: {project.client.name}</p>
                         <p class="text-sm text-gray-600">End: {project.end_date}</p>
                     </div>
                     <button type="button" class="px-6 py-2 mt-6 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md transition-colors">
