@@ -5,9 +5,9 @@ from .models import Client, Project, Testimonial, Blog, Contact
 
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ('name', 'phone_number', 'email', 'created_at')
+    list_display = ('user', 'phone_number', 'email', 'created_at')
     list_filter = ('created_at',)
-    search_fields = ('name__username', 'phone_number')  # Searching through the User's username
+    search_fields = ('user__username', 'phone_number')  # Searching through the User's username
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
