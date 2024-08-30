@@ -3,14 +3,14 @@ from django.contrib.auth.models import User
 
 
 class Client(models.Model):
-    name = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)  # Renamed from 'name' for clarity
     phone_number = models.CharField(max_length=15)
     email = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     profile_image = models.ImageField(upload_to="client_images/")
 
     def __str__(self):
-        return self.name.username
+        return self.user.username
 
 
 class Project(models.Model):
