@@ -1,35 +1,21 @@
-<script>
-	import { TestimonialStore } from './../../TestimonialStore';
-	import { onMount } from 'svelte';
+<!-- YOU CAN DELETE EVERYTHING IN THIS PAGE -->
 
-	onMount(async () => {
-		try {
-			const endpoint = 'http://127.0.0.1:8000/api/testimonials/';
-			const response = await fetch(endpoint);
-			if (!response.ok) {
-				throw new Error(`HTTP error! status: ${response.status}`);
-			}
-			const data = await response.json();
-			console.log(data);
-			TestimonialStore.set(data);
-		} catch (error) {
-			console.error('Failed to fetch blogs:', error);
-		}
-	});
-</script>
+<div class="container h-full mx-auto flex justify-center items-center mt-32">
+	<div class="space-y-10 text-center flex flex-col items-center">
+		<h2 class="text-7xl md:text-7xl lg:text-9xl">Ringo Tech Savvy Services</h2>
+		<!-- Animated Logo -->
+		
 
-<div class="max-w-6xl mx-auto p-5">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {#each $TestimonialStore as testimonial}
-            <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col justify-between">
-                <div>
-                    <h1 class="text-xl font-bold text-gray-900">{testimonial.client_name}</h1>
-                    <p class="text-gray-700">{testimonial.project_name}</p>
-                    <p class="text-sm text-gray-500">{testimonial.date}</p>
-                    <p class="text-gray-600 mt-2">{testimonial.testimonial_body}</p>
-                </div>
-            </div>
-        {/each}
-    </div>
-
+		<div class="flex justify-center space-x-2">
+			<a
+				class="btn variant-filled"
+				href="/services/"
+				target="_blank"
+				rel="noreferrer"
+			>
+				services
+			</a>
+		</div>
+		
+	</div>
 </div>
